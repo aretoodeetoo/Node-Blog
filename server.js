@@ -1,15 +1,18 @@
 const express = require('express');
-const helmet = require('helmet');
-const morgan = require('morgan');
+
+// server commands
+const server = express();
+server.use(express.json());
+
+// const helmet = require('helmet');
+// const morgan = require('morgan');
 
 const postsRouter = require('./posts/postsRouter');
 const usersRouter = require('./users/usersRouter');
 
-const server = express();
 
-server.use(express.json());
-server.use(helmet());
-server.use(morgan('dev'));
+// server.use(helmet());
+// server.use(morgan('dev'));
 
 server.use('/api/posts', postsRouter);
 server.use('/api/users', usersRouter);
