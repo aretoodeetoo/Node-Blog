@@ -61,7 +61,8 @@ router.delete('/:id', async (req, res) => {
 // Update a user
 router.put('/:id', async (req, res) => {
     try {
-        const {username, id } = await Users.update(req.body, req.params.id);
+        const {username} = await Users.update(req.body);
+        const {id} = await Users.update(req.params.id);
         if (!username || !id){
             res.status(400).json({ message: "Please provide both a username and an id to update a user."});
         } else {

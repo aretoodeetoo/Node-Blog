@@ -59,8 +59,9 @@ router.delete('/:id', async (req, res) => {
 // Update a post
 router.put('/:id', async (req, res) => {
     try {
-        const { text, user_id} = await Posts.update(req.body. req.params.ud);
-        if (!text || !user_id){
+        const { id } = await Posts.update(req.params.id);
+        const { text } = await Posts.update(req.body)
+        if (!text || !id){
             res.status(400).json({ message: "Please provide both text and user id to update this post."});
         } else {
             const updatedPost = await Posts.insert(req.body);
