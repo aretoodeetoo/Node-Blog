@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 
 // Delete a user
 router.delete('/:id', async (req, res) => {
-    try{
+    try {
         const count = await Users.remove(req.params.id);
         if (count > 0){
             res.status(200).json({ message: "User successfully removed!"});
@@ -55,6 +55,22 @@ router.delete('/:id', async (req, res) => {
         }
     } catch {
         res.status(500).json({ message: "Error deleting this user."});
+    }
+})
+
+// Update a user
+router.put('/:id', async (req, res) => {
+    try {
+        const {username} = await Users.update(req.body);
+        const {id} = await Users.update(req.params.id);
+        if (!username || !id){
+            res.status(400).json({ message: "Please provide both a username and an id to update a user."});
+        } else {
+            const updatedUser = await Users.insert(req.body);
+            res.status(200).json(updatedUser);
+        }
+    } catch {
+        res.status(500).json({ message: "Error updating this user." });
     }
 })
 
