@@ -28,4 +28,20 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+// Add a user
+router.post('/', async (req, res) => {
+    try {
+        const { name } = req.body;
+        if (!name){
+            res.status(400).json({ message: "Please enter a username to continue "})
+            } else {
+            const newUser = await Users.insert(req.body);
+            res.status(201).json(newUser)
+            }
+        } catch {
+            res.status(500).json({ message: "The user could not be added to our database"});
+        }
+    } 
+)
+
 module.exports = router;
