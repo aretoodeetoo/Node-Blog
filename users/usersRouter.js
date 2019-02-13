@@ -4,6 +4,11 @@ const Users = require('../data/helpers/userDb');
 
 const router = express.Router();
 
+function toUppercase(req, res, next){
+    req.body.name = req.body.name.toUppercase();
+    next();
+}
+
 router.get('/', async (req, res) => {
     try {
         const users = await Users.get();
@@ -46,7 +51,10 @@ router.get('/posts/:userId', (req, res) => {
 })
 
 // Add a user
-router.post('/', async (req, res) => {
+router.post('/', toUppercase, async (req, res) => {
+    if (!req.body.name){
+        res.status();
+    }
     try {
         const { name } = req.body;
         if (!name){
