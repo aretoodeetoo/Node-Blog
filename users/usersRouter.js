@@ -52,9 +52,6 @@ router.get('/posts/:userId', (req, res) => {
 
 // Add a user
 router.post('/', toUppercase, async (req, res) => {
-    if (!req.body.name){
-        res.status();
-    }
     try {
         const { name } = req.body;
         if (!name){
@@ -84,7 +81,7 @@ router.delete('/:id', async (req, res) => {
 })
 
 // Update a user
-router.put('/:id', async (req, res) => {
+router.put('/:id', toUppercase, async (req, res) => {
     try {
         const {username} = await Users.update(req.body);
         const {id} = await Users.update(req.params.id);
