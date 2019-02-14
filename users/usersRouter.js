@@ -4,18 +4,18 @@ const Users = require('../data/helpers/userDb');
 
 const router = express.Router();
 
-function toUppercase(req, res, next){
-    const { name } = req.body;
-    name = name.toUppercase();
-    next();
-}
-
-// function toUppercase(name){
-//     return function(req, res, next){
-//         req.body.name = req.body.name.toUppercase();
-//         next();
-//     }
+// function toUpperCase(req, res, next){
+//     // const { name } = req.body;
+//     req.body.name = req.body.name.toUpperCase();
+//     next();
 // }
+
+function toUpperCase(name){
+    return function(req, res, next){
+        req.body.name = req.body.name.toUpperCase();
+        next();
+    }
+}
 
 router.get('/', async (req, res) => {
     try {
@@ -59,7 +59,7 @@ router.get('/posts/:userId', (req, res) => {
 })
 
 // Add a user
-router.post('/', toUppercase, async (req, res) => {
+router.post('/', toUpperCase, async (req, res) => {
     try {
         const { name } = req.body;
         if (!name){
@@ -89,7 +89,7 @@ router.delete('/:id', async (req, res) => {
 })
 
 // Update a user
-router.put('/:id', toUppercase, async (req, res) => {
+router.put('/:id', toUpperCase, async (req, res) => {
     try {
         const {username} = await Users.update(req.body);
         const {id} = await Users.update(req.params.id);
