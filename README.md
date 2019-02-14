@@ -27,13 +27,13 @@ Follow these steps for completing your project.
 ## Minimum Viable Product
 
 1. Build an API to let clients perform CRUD operations on `users` and `posts`. x
-1. Add an endpoint to retrieve the list of `posts` for a `user`.
+1. Add an endpoint to retrieve the list of `posts` for a `user`. x
 1. Write custom `middleware` to ensure that the user's `name` is upper-cased before the request reaches the `POST` or `PUT` _route handlers_.
 1. Use `Express Routers` to organize the endpoints. You can optionally move and rename `postDb.js` and `userDb.js` to place it next to the corresponding router. x
 
 ### Database Persistence Helpers
 
-The `/data/helpers` folder includes helper files that you can use to manage the persistence of _users_ and _posts_ data. These files are `userDb.js` and `postDb.js`. Both files publish the following api:
+<!-- The `/data/helpers` folder includes helper files that you can use to manage the persistence of _users_ and _posts_ data. These files are `userDb.js` and `postDb.js`. Both files publish the following api: -->
 
 - `get()`: calling find returns a promise that resolves to an array of all the `resources` contained in the database.
 - `getById()`: takes an `id` as the argument and returns a promise that resolves to the `resource` with that id if found.

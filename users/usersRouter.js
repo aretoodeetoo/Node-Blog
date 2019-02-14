@@ -5,9 +5,17 @@ const Users = require('../data/helpers/userDb');
 const router = express.Router();
 
 function toUppercase(req, res, next){
-    req.body.name = req.body.name.toUppercase();
+    const { name } = req.body;
+    name = name.toUppercase();
     next();
 }
+
+// function toUppercase(name){
+//     return function(req, res, next){
+//         req.body.name = req.body.name.toUppercase();
+//         next();
+//     }
+// }
 
 router.get('/', async (req, res) => {
     try {
